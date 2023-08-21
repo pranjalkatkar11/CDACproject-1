@@ -35,13 +35,13 @@ pipeline {
       sh 'mvn clean package'
        }
     }
-    stage ('Deploy-To-Tomcat') {
-            steps {
-         sshagent(['tomcat']) {
-            sh 'scp -o StrictHostKeyChecking=no target/*.war  ubuntu@ec2-54-205-71-95.compute-1.amazonaws.com
-:/prod/apache-tomcat-9.0.79/webapps/webapp.war'
-              }      
-           }       
-    }
+   // stage ('Deploy-To-Tomcat') {
+     //       steps {
+       //  sshagent(['tomcat']) {
+         //   sh 'scp -o StrictHostKeyChecking=no target/*.war  ubuntu@ec2-54-205-71-95.compute-1.amazonaws.com
+//:/prod/apache-tomcat-9.0.79/webapps/webapp.war'
+  //            }      
+    //       }       
+   // }
   }
 }

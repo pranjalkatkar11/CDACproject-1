@@ -19,16 +19,16 @@ pipeline {
         sh 'cat trufflehog'
       }
     }
-    //stage ('Source Composition Analysis') {
-     // steps {
-      //   sh 'rm owasp* || true'
-      //   sh 'wget "https://raw.githubusercontent.com/ArnabDhar/CADCProject/master/owasp-dependency-check.sh" '
-       //  sh 'chmod +x owasp-dependency-check.sh'
-       //  sh 'bash owasp-dependency-check.sh'
-       //  sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
+    stage ('Source Composition Analysis') {
+     steps {
+       sh 'rm owasp* || true'
+       sh 'wget "https://raw.githubusercontent.com/ArnabDhar/CADCProject/master/owasp-dependency-check.sh" '
+       sh 'chmod +x owasp-dependency-check.sh'
+       sh 'bash owasp-dependency-check.sh'
+       sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
         
-   //   }
- //   }
+      }
+    }
         
     stage ('Build') {
       steps {
@@ -37,9 +37,7 @@ pipeline {
     }
    stage ('Deploy-To-Tomcat') {
             steps {
-       //  sshagent(['tomcat']) {
-            sh 'scp -A target/*.war  jenkins@172.31.82.76:/prod/apache-tomcat-9.0.79/webapps/webapp.war'
-             // }    
+            sh 'scp -A target/*.war  jenkins@172.31.82.76:/prod/apache-tomcat-9.0.79/webapps/webapp.war'  
           }       
    }
   }

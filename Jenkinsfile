@@ -29,7 +29,18 @@ pipeline {
          
         }
       }
-       
+       stage('SAST') {
+            steps {
+                script {
+                    def auth_token = 'YOUR_GENERATED_TOKEN' // Replace with your actual authentication token
+                    
+                    withSonarQubeEnv('sonar') {
+                        sh "mvn sonar:sonar -Dsonar.login=${auth_token}"
+                        sh 'cat target/sonar/report-task.txt'
+                    }
+                }
+            }
+        }
     stage ('Build') {
       steps {
       sh 'mvn clean package'

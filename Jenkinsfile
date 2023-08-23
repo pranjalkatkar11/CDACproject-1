@@ -56,7 +56,7 @@ pipeline {
 
     stage ('DAST') {
       steps {
-         sh 'ssh  -A owaspzap@172.31.82.131 "ls" || true'
+         sh 'ssh  -A owaspzap@172.31.82.131 "ls"'
       }
     }
   }

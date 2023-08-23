@@ -32,7 +32,7 @@ pipeline {
        stage('SAST') {
             steps {
                 script {
-                    def auth_token = 'YOUR_GENERATED_TOKEN' // Replace with your actual authentication token
+                    def auth_token = 'sqa_ef5e99ace0a414a798d07bb9061766f872f06e61' // Replace with your actual authentication token
                     
                     withSonarQubeEnv('sonar') {
                         sh "mvn sonar:sonar -Dsonar.login=${auth_token}"

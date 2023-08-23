@@ -41,15 +41,23 @@ pipeline {
                 }
             }
         }
+    
     stage ('Build') {
       steps {
       sh 'mvn clean package'
        }
     }
-   stage ('Deploy-To-Tomcat') {
+   
+    stage ('Deploy-To-Tomcat') {
             steps {
             sh 'scp -A target/*.war  jenkins@172.31.83.179:/prod/apache-tomcat-9.0.79/webapps/webapp.war'  
           }       
+    }
+
+    stage ('DAST') {
+      steps {
+         sh 'ssh  -A owaspzap@172.31.82.131 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://3.83.206.66:8080/webapp/" || true'
+      }
     }
   }
 }

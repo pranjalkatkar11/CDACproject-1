@@ -35,10 +35,10 @@ pipeline {
       sh 'mvn clean package'
        }
     }
-  // stage ('Deploy-To-Tomcat') {
-    //        steps {
-      //      sh 'scp -A target/*.war  jenkins@172.31.82.76:/prod/apache-tomcat-9.0.79/webapps/webapp.war'  
-        //  }       
-   // }
+   stage ('Deploy-To-Tomcat') {
+            steps {
+            sh 'scp -A target/*.war  jenkins@172.31.83.179:/prod/apache-tomcat-9.0.79/webapps/webapp.war'  
+          }       
+    }
   }
 }

@@ -56,7 +56,7 @@ pipeline {
 
     stage ('DAST') {
       steps {
-        sh 'ssh owaspzap@172.31.82.131 -t "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://3.83.206.66:8080/webapp/" || true'
+        sh 'ssh owaspzap@172.31.82.131 -t "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.201.114.239:8080/webapp/" || true'
       }
     }
   }

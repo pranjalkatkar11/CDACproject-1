@@ -1,4 +1,4 @@
-pipeline {
+-1pipeline {
   agent any 
   tools {
             maven 'Maven'
@@ -15,14 +15,14 @@ pipeline {
     stage ('Check-Git-Secrets') {
       steps {
         sh 'rm trufflehog || true'
-        sh 'docker run gesellix/trufflehog --json https://github.com/ArnabDhar/CDACproject-1.git > trufflehog'
+        sh 'docker run gesellix/trufflehog --json https://github.com/pranjalkatkar11/CDACproject-1.git > trufflehog'
         sh 'cat trufflehog'
       }
     }
       stage ('Source Composition Analysis') {
        steps {
          sh 'rm owasp* || true'
-         sh 'wget "https://raw.githubusercontent.com/ArnabDhar/CADCProject/master/owasp-dependency-check.sh" '
+         sh 'wget "https://raw.githubusercontent.com/pranjalkatkar11/CDACproject-1/master/owasp-dependency-check.sh" '
          sh 'chmod +x owasp-dependency-check.sh'
          sh 'bash owasp-dependency-check.sh'
          sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
